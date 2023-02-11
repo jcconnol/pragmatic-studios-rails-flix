@@ -5,6 +5,9 @@
       <h3>
         <%= total_gross(movie) %>
       </h3>
+      <h3>
+        <%= movie.released_on %>
+      </h3>
       <p>
         <%= truncate(movie.description, length: 40, separator: ' ') %>
       </p>

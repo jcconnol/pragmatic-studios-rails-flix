@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.all
+    @movies = Movie.released_movies
   end
 
   def show
@@ -32,5 +32,11 @@ class MoviesController < ApplicationController
   def movie_params
     params[:movie].
       permit(:title, :description, :rating, :released_on, :total_gross)
+  end
+
+  def destroy
+    @movie = Movie.find(params[:id])
+    @movie.destroy
+    redirect_to movies_url
   end
 end
