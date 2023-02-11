@@ -1,9 +1,21 @@
 <section class="movie">
+<div class="image">
+        <%= image_tag @movie.image_file_name %>
+    </div>
     <div class="summary">
+
         <h2><%= link_to @movie.title, movie_path %></h2>
         <h3>
             <%= total_gross(@movie) %>
         </h3>
+        <h3>
+        Director:
+        <%= @movie.director %>
+      </h3>
+      <h3>
+        Duration:
+        <%= @movie.duration %>
+      </h3>
         <p>
             <%= truncate(@movie.description, length: 40, separator: ' ') %>
         </p>

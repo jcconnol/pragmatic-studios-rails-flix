@@ -1,0 +1,14 @@
+<%= if object.errors.any? %>
+    <section class="errors">
+        <h2>Oops</h2>
+        <h3>
+            Please correct:
+            <%= pluralize(object.errors.size, "error") %>:
+        </h3>
+        <ul>
+            <% object.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    <section class="errors">
+<% end %>

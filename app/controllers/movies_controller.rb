@@ -17,21 +17,34 @@ class MoviesController < ApplicationController
 
   def update
     @movie = Movie.find(params[:id])
-    @movie.update(movie_params)
-
-    redirect_to movie_path(@movie)
+    if  @movie.update(movie_params)
+      redirect_to movie_path(@movie)
+    else
+      render :edit
+    end
   end
 
   def create
     @movie = Movie.new(movie_params)
-    @movie.save
-
-    redirect_to movie_path(@movie)
+    if @movie.save
+      redirect_to @event
+    else
+      render :new
+    end
   end
 
   def movie_params
     params[:movie].
-      permit(:title, :description, :rating, :released_on, :total_gross)
+      permit(
+        :title,
+        :description,
+        :rating,
+        :released_on,
+        :total_gross,
+        :director,
+        :duration,
+        :image_file_name
+      )
   end
 
   def destroy
