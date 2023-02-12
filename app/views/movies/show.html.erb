@@ -12,6 +12,14 @@
         Director:
         <%= @movie.director %>
       </h3>
+      <div class="reviews">
+        <%= link_to pluralize(@movie.reviews.size, "review"),
+            movie_reviews_path(@movie) %>
+
+
+    </div>
+    <%= link_to "Write Review", new_movie_review_path(@movie),
+              class: "review" %>
       <h3>
         Duration:
         <%= @movie.duration %>
