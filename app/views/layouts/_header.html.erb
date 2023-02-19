@@ -1,15 +1,27 @@
 <header>
     <nav>
-        <%= link_to image_tag("logo"), root_path %>
-        <ul class="left">
+      <%= link_to image_tag("logo"), root_path %>
+      <ul class="left">
+        <li>
+          <%= link_to "Movies", movies_path %>
+        </li>
+      </ul>
+      <ul class="right">
+        <% if current_user %>
           <li>
-            <%= link_to "Movies", movies_path %>
+            <%= link_to current_user.name, current_user %>
           </li>
-        </ul>
-        <ul class="right">
+          <li>
+            <%= link_to "Logout", session_path, method: :delete, class: "button" %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "Sign In", signin_path, class: "button" %>
+          </li>
           <li>
             <%= link_to "Sign Up", signup_path, class: "button" %>
           </li>
-        </ul>
+        <% end %>
+      </ul>
     </nav>
 </header>
