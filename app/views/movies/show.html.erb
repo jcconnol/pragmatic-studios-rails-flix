@@ -31,7 +31,9 @@
     </div>
 </section>
 
-<section class="admin">
-    <%= link_to "Edit", edit_movie_path(@movie), class: "button" %>
-    <%= button_to 'delete', @movie, class: 'button', :method => 'delete' %>
-</section>
+<% if current_user_admin? %>
+  <section class="admin">
+      <%= link_to "Edit", edit_movie_path(@movie), class: "button" %>
+      <%= button_to 'delete', @movie, class: 'button', :method => 'delete' %>
+  </section>
+<% end %>

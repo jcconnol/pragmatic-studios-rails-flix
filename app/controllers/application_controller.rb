@@ -9,6 +9,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_admin
+    unless current_user_admin?
+      redirect_to root_url, alert: "unauthorized."
+    end
+  end
+
+  def current_user_admin?
+    current_user && current_user.admin?
+  end
+
   def current_user
     User.find(session[:user_id]) if session[:user_id]
   end
@@ -18,6 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user
+  helper_method :current_user_admin?
   helper_method :current_user?
 
 end
