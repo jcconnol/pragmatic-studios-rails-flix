@@ -16,6 +16,10 @@ class Movie < ApplicationRecord
 
   validates :rating, :inclusion=> { :in => RATINGS }
 
+  scope: :released, -> { where("released_on < ?", Time.now).order("released_on asc") }
+  scope: :upcoming, lambda { where("released_on > ?", Time.now).order("released_on asc") }
+  scope: :upcoming, ->(max=5) { released.limit(max) }
+
   def self.released_movies
     where("released_on > ?", Time.now).order("released_on desc")
   end
